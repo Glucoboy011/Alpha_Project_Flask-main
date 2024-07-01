@@ -35,7 +35,7 @@ def cadastro_aluno():
         foto = request.form.get('foto')
 
         if nome and idade and serie and cpf and UF and cidade and github and linkedin and mini_bio and foto:
-            novo_aluno = Aluno(nome, int(idade), github, linkedin, mini_bio, foto, serie, cpf, UF, cidade)
+            novo_aluno = Aluno(nome, int(idade), serie, cpf, UF, cidade, github, linkedin, mini_bio, foto)
             alunos.append(novo_aluno)
             flash('Aluno cadastrado com sucesso!', 'success')
             return redirect(url_for('listar_alunos'))
@@ -48,13 +48,16 @@ def cadastro_aluno():
 def cadastro_professor():
     if request.method == 'POST':
         nome = request.form.get('nome')
+        idade = request.form.get('idade')
+        telefone = request.form.get('telefone')
+        email = request.form.get('email')
         github = request.form.get('github')
         linkedin = request.form.get('linkedin')
         bio = request.form.get('bio')
         foto = request.form.get('foto')
 
-        if nome and github and linkedin and bio and foto:
-            novo_professor = Professor(nome, github, linkedin, bio, foto)
+        if nome and idade and telefone and email and github and linkedin and bio and foto:
+            novo_professor = Professor(nome, idade, telefone, email, github, linkedin, bio, foto)
             professores.append(novo_professor)
             flash('Professor cadastrado com sucesso!', 'success')
             return redirect(url_for('listar_professores'))
